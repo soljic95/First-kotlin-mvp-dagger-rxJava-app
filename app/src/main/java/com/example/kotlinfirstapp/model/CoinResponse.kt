@@ -1,6 +1,6 @@
 package com.example.kotlinfirstapp.model
 
-data class DogeResponse(
+data class CoinResponse(
     val `data`: Data,
     val status: String
 )
