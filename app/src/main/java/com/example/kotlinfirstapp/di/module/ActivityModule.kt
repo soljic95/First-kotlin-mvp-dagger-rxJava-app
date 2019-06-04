@@ -1,6 +1,8 @@
 package com.example.kotlinfirstapp.di.module
 
 import com.example.kotlinfirstapp.main.MainPresenter
+import com.example.kotlinfirstapp.splash.SplashContract
+import com.example.kotlinfirstapp.splash.SplashPresenter
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -20,7 +22,12 @@ class ActivityModule {
     }
 
     @Provides
-    fun providePresenter(retrofit: Retrofit): MainPresenter {
+    fun provideMainPresenter(retrofit: Retrofit): MainPresenter {
         return MainPresenter(retrofit)
+    }
+
+    @Provides
+    fun provideSplashContract(retrofit: Retrofit): SplashContract.Presenter {
+        return SplashPresenter(retrofit)
     }
 }
