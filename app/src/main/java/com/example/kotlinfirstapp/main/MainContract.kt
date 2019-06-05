@@ -10,5 +10,6 @@ interface MainContract {
 
     interface Presenter {
         fun btnClicked()
+        fun setView(mainView: View)
     }
 }

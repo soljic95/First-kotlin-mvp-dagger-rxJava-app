@@ -12,14 +12,14 @@ import javax.inject.Inject
 class MainActivity : BaseActivity(), MainContract.View {
 
     @Inject
-    lateinit var presenter: MainPresenter
+    lateinit var presenter: MainContract.Presenter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        presenter.setMainView(this)
+        presenter.setView(this)
         btnChangeText.setOnClickListener {
             presenter.btnClicked()
             Log.d("marko", "btn clicked")

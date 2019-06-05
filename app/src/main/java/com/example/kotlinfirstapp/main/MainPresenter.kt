@@ -2,12 +2,14 @@ package com.example.kotlinfirstapp.main
 
 import android.util.Log
 import com.example.kotlinfirstapp.base.BasePresenter
+import com.example.kotlinfirstapp.data.CoinDao
+import com.example.kotlinfirstapp.router.Router
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
 
-class MainPresenter(retrofit: Retrofit) : BasePresenter(retrofit), MainContract.Presenter {
-
+class MainPresenter(retrofit: Retrofit, coinDao: CoinDao, router: Router) : BasePresenter(retrofit, coinDao, router),
+    MainContract.Presenter {
     private var mainView: MainContract.View? = null
 
     override fun btnClicked() {
@@ -22,10 +24,15 @@ class MainPresenter(retrofit: Retrofit) : BasePresenter(retrofit), MainContract.
                 },
                 { error -> Log.d("marko", error.localizedMessage) }
             ))
+
+
     }
 
-    fun setMainView(mainView: MainContract.View) {
+
+    override fun setView(mainView: MainContract.View) {
         this.mainView = mainView
+
     }
+
 
 }
