@@ -10,23 +10,11 @@ import retrofit2.Retrofit
 
 class MainPresenter(retrofit: Retrofit, coinDao: CoinDao, router: Router) : BasePresenter(retrofit, coinDao, router),
     MainContract.Presenter {
-    private var mainView: MainContract.View? = null
-
-    override fun btnClicked() {
-        mainView?.onShowProgressBar()
-        addDisposable(getClientAdapter().getDoge()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { succes ->
-                    mainView?.onHideProgressBar()
-                    mainView?.onDataReceived(succes.data.name)
-                },
-                { error -> Log.d("marko", error.localizedMessage) }
-            ))
-
-
+    override fun displayFragment() {
+        getRouter().displayViewPagerFragment()
     }
+
+    private var mainView: MainContract.View? = null
 
 
     override fun setView(mainView: MainContract.View) {

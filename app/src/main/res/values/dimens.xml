@@ -3,4 +3,5 @@
     <dimen name="eight_margin">8dp</dimen>
     <dimen name="bigger_text">20sp</dimen>
     <dimen name="et_width">190dp</dimen>
+    <dimen name="usual_padding">16dp</dimen>
 </resources>

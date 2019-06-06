@@ -12,7 +12,7 @@ import dagger.Component
     modules = [ActivityModule::class],
     dependencies = [ApplicationComponent::class]
 )
-interface ActivityComponent : ActivitiyCompnentExposes {
+interface ActivityComponent : ActivityCompnentExposes {
 
     fun inject(mainActivity: MainActivity)
     fun inject(loginActivity: LoginActivity)

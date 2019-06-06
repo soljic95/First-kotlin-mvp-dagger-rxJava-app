@@ -20,9 +20,13 @@ abstract class BaseActivity : AppCompatActivity() {
 
     private fun init() {
         activityComponent = DaggerActivityComponent.builder()
-            .activityModule(ActivityModule(this))
+            .activityModule(ActivityModule(this, supportFragmentManager))
             .applicationComponent((application as BaseApplication).getApplicationComponent())
             .build()
+    }
+
+    fun getComponent(): ActivityComponent {
+        return this.activityComponent
     }
 
 }

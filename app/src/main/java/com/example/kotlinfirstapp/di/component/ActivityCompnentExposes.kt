@@ -2,5 +2,5 @@ package com.example.kotlinfirstapp.di.component
 
 import com.example.kotlinfirstapp.di.module.ActivityModule
 
-interface ActivitiyCompnentExposes : ApplicationComponentExposes, ActivityModule.Exposes {
+interface ActivityCompnentExposes : ApplicationComponentExposes, ActivityModule.Exposes {
 }

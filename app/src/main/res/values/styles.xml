@@ -17,5 +17,9 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="TabLayoutTextTheme" parent="Widget.MaterialComponents.TabLayout">
+        <item name="android:textColor">@color/darkText</item>
+    </style>
+
 
 </resources>

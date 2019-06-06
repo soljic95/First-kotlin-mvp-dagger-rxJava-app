@@ -28,7 +28,6 @@ class LoginActivity : BaseActivity(), LoginContract.View {
         activityComponent.inject(this)
     }
 
-
     @OnClick(R.id.tvRegister)
     fun registerClicked() {
         Log.d("marko", "register clicked")
