@@ -14,27 +14,18 @@ class ApplicationModule(val context: Context) {
 
     @Provides
     @ApplicationScope
-    @ForApplication
     fun provideContext(): Context {
         return context
     }
 
     @Provides
     @ApplicationScope
-    fun provideCoinDatabase(@ForApplication context: Context): CoinDatabase {
-        return CoinDatabase.getDatabase(context)
-    }
-
-    @Provides
-    @ApplicationScope
-    fun provideCoinDao(coinDatabase: CoinDatabase): CoinDao {
-        return coinDatabase.coinDao()
+    fun provideCoinDao(context: Context): CoinDao {
+        return CoinDatabase.getDatabase(context).coinDao()
     }
 
     interface Exposes {
-        fun getCoinDatabase(): CoinDatabase
         fun getCoinDao(): CoinDao
-
 
     }
 

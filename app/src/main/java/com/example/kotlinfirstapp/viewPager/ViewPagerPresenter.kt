@@ -19,6 +19,7 @@ class ViewPagerPresenter(
     router: Router
 ) :
     BasePresenter(retrofit, coinDao, router), ViewPagerContract.Presenter {
+
     override fun logOutClicked() {
         viewPagerView.displayProgressDialog()
         addDisposable(
@@ -40,14 +41,12 @@ class ViewPagerPresenter(
     }
 
     override fun init() {
+        viewPagerAdapter.clear()
         viewPagerAdapter.addFragment(MyCoinsFragment(), "My coins")
         viewPagerAdapter.addFragment(SearchCoinsFragment(), "Search coins")
         viewPagerView.onAdapterReady(viewPagerAdapter)
     }
 
-    override fun pause() {
-        viewPagerAdapter.clear()
-    }
 
     private fun logOutUser(user: User) {
         user.isUserLoggedIn = false

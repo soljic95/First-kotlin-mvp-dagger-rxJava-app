@@ -10,5 +10,6 @@ interface CoinDetailsContract {
         fun goBackInFragment()
 
         fun setView(view: View)
+
     }
 }

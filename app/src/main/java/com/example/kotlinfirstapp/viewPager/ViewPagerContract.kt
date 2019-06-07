@@ -16,7 +16,6 @@ interface ViewPagerContract {
 
         fun init()
 
-        fun pause()
 
         fun logOutClicked()
 

@@ -26,12 +26,15 @@ class ViewPagerFragment : BaseFragment(), ViewPagerContract.View {
         savedInstanceState: Bundle?
     ): View? {
 
+
         return inflater.inflate(R.layout.view_pager_layout, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.setView(this)
+        presenter.init()
+
         setHasOptionsMenu(true)
         createProgressBar()
     }
@@ -66,16 +69,11 @@ class ViewPagerFragment : BaseFragment(), ViewPagerContract.View {
         progressDialog?.show()
     }
 
-    override fun onPause() {
-        presenter.pause()
-        super.onPause()
-    }
 
     override fun onResume() {
         val actionBar = (activity as MainActivity).getSupportAction()
         actionBar?.setDisplayHomeAsUpEnabled(false)                 //todo fix the viewPager fragments. Child fragments also
         actionBar?.title = "CoinSearch"
-        presenter.init()
         super.onResume()
 
     }

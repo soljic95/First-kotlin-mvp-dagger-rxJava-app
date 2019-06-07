@@ -43,7 +43,7 @@ class SearchCoinsPresenter(retrofit: Retrofit, coinDao: CoinDao, router: Router)
 
     override fun btnDetailsClicked() {
         var bundle = Bundle()
-        bundle.putString("coin_name", coin.name)
+        bundle.putParcelable("coin", coin)
         getRouter().goToDetailsPage(bundle)
     }
 

@@ -55,4 +55,5 @@ class RouterImpl(
         activity.startActivity(Intent(activity, LoginActivity::class.java))
         activity.finish()
     }
+
 }

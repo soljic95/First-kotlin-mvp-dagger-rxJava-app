@@ -11,7 +11,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         init()
         inject(activityComponent)
     }
@@ -28,5 +27,6 @@ abstract class BaseActivity : AppCompatActivity() {
     fun getComponent(): ActivityComponent {
         return this.activityComponent
     }
+
 
 }

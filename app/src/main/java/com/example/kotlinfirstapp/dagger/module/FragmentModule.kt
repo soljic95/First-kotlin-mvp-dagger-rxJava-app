@@ -1,5 +1,9 @@
 package com.example.kotlinfirstapp.dagger.module
 
+import androidx.fragment.app.FragmentManager
+import com.example.kotlinfirstapp.dagger.qualifiers.ForFragment
+import com.example.kotlinfirstapp.dagger.scope.ActivityScope
+import com.example.kotlinfirstapp.dagger.scope.FragmentScope
 import com.example.kotlinfirstapp.viewPager.MyViewPagerAdapter
 import com.example.kotlinfirstapp.data.CoinDao
 import com.example.kotlinfirstapp.router.Router
@@ -14,8 +18,18 @@ import dagger.Provides
 import retrofit2.Retrofit
 
 @Module
-class FragmentModule {
+class FragmentModule(private val fragmentManager: FragmentManager) {
 
+    @Provides
+    fun provideFragmentManger(): FragmentManager {
+        return fragmentManager
+    }
+
+    @Provides
+    @FragmentScope
+    fun provideViewPagerAdapter(fragmentManager: FragmentManager): MyViewPagerAdapter {
+        return MyViewPagerAdapter(fragmentManager)
+    }
 
     @Provides
     fun provideViewPagerPresenter(
@@ -45,8 +59,4 @@ class FragmentModule {
         return CoinDetailsPresenter(retrofit, coinDao, router)
     }
 
-
-    interface Exposes {
-
-    }
 }

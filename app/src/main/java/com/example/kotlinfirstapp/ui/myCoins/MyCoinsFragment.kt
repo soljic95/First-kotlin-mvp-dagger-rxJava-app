@@ -19,5 +19,15 @@ class MyCoinsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_my_coins, container, false)
     }
 
+    override fun onPause() {
+        childFragmentManager.beginTransaction().addToBackStack("my_coins_fragment").commit()
+        super.onPause()
+    }
+
+    override fun onResume() {
+
+        super.onResume()
+    }
+
 
 }
