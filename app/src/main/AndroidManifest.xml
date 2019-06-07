@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.kotlinfirstapp">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".base.BaseApplication"
@@ -12,22 +12,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
-
-        <activity android:name=".ui.loginUser.LoginActivity">
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".main.MainActivity"
-            android:label="@string/main_activity_title" />
-
+        <activity android:name=".ui.loginUser.LoginActivity" />
         <activity
             android:name=".ui.registerUser.RegisterUserActivity"
             android:label="@string/register_user_activity_title" />
+        <activity
+            android:name=".main.MainActivity"
+            android:label="@string/main_activity_title" />
 
     </application>
 

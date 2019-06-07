@@ -7,6 +7,8 @@ interface CoinDetailsContract {
     }
 
     interface Presenter {
+        fun goBackInFragment()
 
+        fun setView(view: View)
     }
 }

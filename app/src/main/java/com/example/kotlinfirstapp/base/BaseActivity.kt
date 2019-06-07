@@ -2,9 +2,9 @@ package com.example.kotlinfirstapp.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.kotlinfirstapp.di.component.ActivityComponent
-import com.example.kotlinfirstapp.di.component.DaggerActivityComponent
-import com.example.kotlinfirstapp.di.module.ActivityModule
+import com.example.kotlinfirstapp.dagger.component.ActivityComponent
+import com.example.kotlinfirstapp.dagger.component.DaggerActivityComponent
+import com.example.kotlinfirstapp.dagger.module.ActivityModule
 
 abstract class BaseActivity : AppCompatActivity() {
     private lateinit var activityComponent: ActivityComponent

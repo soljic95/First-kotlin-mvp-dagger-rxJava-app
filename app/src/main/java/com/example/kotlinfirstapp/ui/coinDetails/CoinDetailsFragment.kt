@@ -3,11 +3,10 @@ package com.example.kotlinfirstapp.ui.coinDetails
 
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 
 import com.example.kotlinfirstapp.R
 import com.example.kotlinfirstapp.base.BaseFragment
-import com.example.kotlinfirstapp.di.component.FragmentComponent
+import com.example.kotlinfirstapp.dagger.component.FragmentComponent
 import com.example.kotlinfirstapp.main.MainActivity
 import javax.inject.Inject
 
@@ -41,13 +40,11 @@ class CoinDetailsFragment : BaseFragment(), CoinDetailsContract.View {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item?.itemId == R.id.home) {
-
-        }
+        presenter.goBackInFragment()
         return super.onOptionsItemSelected(item)
     }
 
-    fun setActionBar() {
+    private fun setActionBar() {
         var actionBar = (activity as MainActivity).getSupportAction()
         actionBar?.title = ""
         actionBar?.setDisplayHomeAsUpEnabled(true)

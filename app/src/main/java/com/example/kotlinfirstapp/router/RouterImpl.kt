@@ -5,10 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import com.example.kotlinfirstapp.R
-import com.example.kotlinfirstapp.viewPager.ViewPagerFragment
 import com.example.kotlinfirstapp.main.MainActivity
+import com.example.kotlinfirstapp.model.User
 import com.example.kotlinfirstapp.ui.coinDetails.CoinDetailsFragment
+import com.example.kotlinfirstapp.ui.loginUser.LoginActivity
 import com.example.kotlinfirstapp.ui.registerUser.RegisterUserActivity
+import com.example.kotlinfirstapp.viewPager.ViewPagerFragment
 
 class RouterImpl(
     private val activity: Activity,
@@ -39,6 +41,7 @@ class RouterImpl(
 
     override fun goToRegisterPage() {
         activity.startActivity(Intent(activity, RegisterUserActivity::class.java))
+        activity.finish()
     }
 
     override fun goToDetailsPage(bundle: Bundle) {
@@ -46,5 +49,10 @@ class RouterImpl(
         detailsFragment.arguments = bundle
         fragmentManager.beginTransaction().addToBackStack("view_pager_fragment")
             .replace(R.id.frag_container, detailsFragment).commit()
+    }
+
+    override fun goToLoginPage() {
+        activity.startActivity(Intent(activity, LoginActivity::class.java))
+        activity.finish()
     }
 }

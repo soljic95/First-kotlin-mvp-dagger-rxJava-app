@@ -1,11 +1,13 @@
 package com.example.kotlinfirstapp.main
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.ActionBar
 import com.example.kotlinfirstapp.R
 import com.example.kotlinfirstapp.base.BaseActivity
-import com.example.kotlinfirstapp.di.component.ActivityComponent
+import com.example.kotlinfirstapp.dagger.component.ActivityComponent
+import com.example.kotlinfirstapp.dagger.qualifiers.ForActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -14,6 +16,10 @@ class MainActivity : BaseActivity(), MainContract.View {
 
     @Inject
     lateinit var presenter: MainContract.Presenter
+
+    @Inject
+    @ForActivity
+    lateinit var context: Context
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

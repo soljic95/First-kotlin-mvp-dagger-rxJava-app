@@ -55,7 +55,7 @@ class RegisterUserPresenter(retrofit: Retrofit, coinDao: CoinDao, router: Router
         regView.onHideProgressBar()
     }
 
-    fun isDataValid(userName: String, password: String): Boolean {
+    private fun isDataValid(userName: String, password: String): Boolean {
         var isDataValid = true
 
         if (userName.length < 3) {
@@ -83,7 +83,7 @@ class RegisterUserPresenter(retrofit: Retrofit, coinDao: CoinDao, router: Router
         regView.onErrorWhileInserting()
     }
 
-    fun logUser() {
+    private fun logUser() {
         user.isUserLoggedIn = true
         addDisposable(
             Completable.fromAction { getCoinDao().logUser(user) }

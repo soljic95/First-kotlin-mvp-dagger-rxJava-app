@@ -1,6 +1,6 @@
-package com.example.kotlinfirstapp.di.module
+package com.example.kotlinfirstapp.dagger.module
 
-import com.example.kotlinfirstapp.adapter.MyViewPagerAdapter
+import com.example.kotlinfirstapp.viewPager.MyViewPagerAdapter
 import com.example.kotlinfirstapp.data.CoinDao
 import com.example.kotlinfirstapp.router.Router
 import com.example.kotlinfirstapp.ui.coinDetails.CoinDetailsContract
@@ -15,6 +15,7 @@ import retrofit2.Retrofit
 
 @Module
 class FragmentModule {
+
 
     @Provides
     fun provideViewPagerPresenter(

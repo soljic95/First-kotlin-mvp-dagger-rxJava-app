@@ -2,8 +2,8 @@ package com.example.kotlinfirstapp.base
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.example.kotlinfirstapp.di.component.DaggerFragmentComponent
-import com.example.kotlinfirstapp.di.component.FragmentComponent
+import com.example.kotlinfirstapp.dagger.component.DaggerFragmentComponent
+import com.example.kotlinfirstapp.dagger.component.FragmentComponent
 
 abstract class BaseFragment : Fragment() {
 

@@ -1,11 +1,8 @@
 package com.example.kotlinfirstapp.main
 
-import android.util.Log
 import com.example.kotlinfirstapp.base.BasePresenter
 import com.example.kotlinfirstapp.data.CoinDao
 import com.example.kotlinfirstapp.router.Router
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
 
 class MainPresenter(retrofit: Retrofit, coinDao: CoinDao, router: Router) : BasePresenter(retrofit, coinDao, router),

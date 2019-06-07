@@ -1,11 +1,11 @@
-package com.example.kotlinfirstapp.di.module
+package com.example.kotlinfirstapp.dagger.module
 
 import android.app.Activity
 import android.content.Context
 import androidx.fragment.app.FragmentManager
-import com.example.kotlinfirstapp.adapter.MyViewPagerAdapter
+import com.example.kotlinfirstapp.viewPager.MyViewPagerAdapter
 import com.example.kotlinfirstapp.data.CoinDao
-import com.example.kotlinfirstapp.di.scope.ActivityScope
+import com.example.kotlinfirstapp.dagger.scope.ActivityScope
 import com.example.kotlinfirstapp.main.MainContract
 import com.example.kotlinfirstapp.main.MainPresenter
 import com.example.kotlinfirstapp.router.Router
@@ -14,6 +14,8 @@ import com.example.kotlinfirstapp.ui.loginUser.LoginContract
 import com.example.kotlinfirstapp.ui.loginUser.LoginPresenter
 import com.example.kotlinfirstapp.ui.registerUser.RegisterUserContract
 import com.example.kotlinfirstapp.ui.registerUser.RegisterUserPresenter
+import com.example.kotlinfirstapp.ui.splash.SplashContract
+import com.example.kotlinfirstapp.ui.splash.SplashPresenter
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -27,7 +29,6 @@ class ActivityModule(
 ) {
 
     @Provides
-    @ActivityScope
     fun provideActivityContext(): Context {
         return context
     }
@@ -80,16 +81,26 @@ class ActivityModule(
         return RegisterUserPresenter(retrofit, coinDao, router)
     }
 
+    @Provides
+    @ActivityScope
+    fun provideSplashPresenter(retrofit: Retrofit, coinDao: CoinDao, router: Router)
+            : SplashContract.Presenter {
+        return SplashPresenter(retrofit, coinDao, router)
+    }
+
     interface Exposes {
         fun getRegisterUserPresenter(): RegisterUserContract.Presenter
 
         fun getRetrofit(): Retrofit
 
-        fun getContext(): Context
+
+        fun retriveContext(): Context
 
         fun getMainPresenter(): MainContract.Presenter
 
         fun getLoginPresenter(): LoginContract.Presenter
+
+        fun getSplashPresenter(): SplashContract.Presenter
 
         fun getViewPagerAdapter(): MyViewPagerAdapter
 

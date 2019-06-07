@@ -47,7 +47,7 @@ class SearchCoinsPresenter(retrofit: Retrofit, coinDao: CoinDao, router: Router)
         getRouter().goToDetailsPage(bundle)
     }
 
-    fun validateName(coinName: String): Boolean {
+    private fun validateName(coinName: String): Boolean {
         var isNameValid = true
 
         if (coinName.length < 3) {
@@ -64,11 +64,11 @@ class SearchCoinsPresenter(retrofit: Retrofit, coinDao: CoinDao, router: Router)
         return isNameValid
     }
 
-    fun displayProgressBar() {
+    private fun displayProgressBar() {
         view.onDisplayProgressBar()
     }
 
-    fun hideProgressBar() {
+    private fun hideProgressBar() {
         view.onHideProgressBar()
     }
 }

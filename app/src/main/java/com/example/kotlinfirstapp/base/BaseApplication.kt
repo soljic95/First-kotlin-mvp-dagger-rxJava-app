@@ -1,9 +1,9 @@
 package com.example.kotlinfirstapp.base
 
 import android.app.Application
-import com.example.kotlinfirstapp.di.component.ApplicationComponent
-import com.example.kotlinfirstapp.di.component.DaggerApplicationComponent
-import com.example.kotlinfirstapp.di.module.ApplicationModule
+import com.example.kotlinfirstapp.dagger.component.ApplicationComponent
+import com.example.kotlinfirstapp.dagger.component.DaggerApplicationComponent
+import com.example.kotlinfirstapp.dagger.module.ApplicationModule
 
 class BaseApplication() : Application() {
 

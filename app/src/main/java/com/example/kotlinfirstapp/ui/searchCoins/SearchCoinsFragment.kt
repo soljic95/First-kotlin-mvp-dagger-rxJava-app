@@ -2,7 +2,6 @@ package com.example.kotlinfirstapp.ui.searchCoins
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import com.example.kotlinfirstapp.R
 import com.example.kotlinfirstapp.base.BaseFragment
-import com.example.kotlinfirstapp.di.component.FragmentComponent
+import com.example.kotlinfirstapp.dagger.component.FragmentComponent
 import kotlinx.android.synthetic.main.fragment_search_coins.*
 import javax.inject.Inject
 
@@ -32,7 +31,7 @@ class SearchCoinsFragment : BaseFragment(), SearchCoinsContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ButterKnife.bind(this, view)
-        presenter.setSearchCoinsView(this)
+
 
     }
 
@@ -46,7 +45,7 @@ class SearchCoinsFragment : BaseFragment(), SearchCoinsContract.View {
     }
 
     @OnClick(R.id.btnDetails)
-    fun onDetailsBtnClicked(){
+    fun onDetailsBtnClicked() {
         presenter.btnDetailsClicked()
     }
 
@@ -63,6 +62,11 @@ class SearchCoinsFragment : BaseFragment(), SearchCoinsContract.View {
     override fun onCoinReady(coinName: String) {
         tvCoinName.text = coinName
         btnDetails.visibility = View.VISIBLE
+    }
+
+    override fun onResume() {
+        presenter.setSearchCoinsView(this)
+        super.onResume()
     }
 
 

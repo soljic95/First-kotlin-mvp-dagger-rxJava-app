@@ -12,6 +12,8 @@ interface Router {
 
     fun goToRegisterPage()
 
+    fun goToLoginPage()
+
     fun displayViewPagerFragment()
 
     fun goToDetailsPage(bundle: Bundle)

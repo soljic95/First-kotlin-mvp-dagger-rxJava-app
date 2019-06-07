@@ -1,4 +1,4 @@
-package com.example.kotlinfirstapp.adapter
+package com.example.kotlinfirstapp.viewPager
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

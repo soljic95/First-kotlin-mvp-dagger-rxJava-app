@@ -8,7 +8,7 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import com.example.kotlinfirstapp.R
 import com.example.kotlinfirstapp.base.BaseActivity
-import com.example.kotlinfirstapp.di.component.ActivityComponent
+import com.example.kotlinfirstapp.dagger.component.ActivityComponent
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
