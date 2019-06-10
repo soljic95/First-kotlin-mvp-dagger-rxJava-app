@@ -10,6 +10,8 @@ interface SearchCoinsContract {
 
         fun onCoinReady(coinName: String)
 
+        fun onError()
+
     }
 
     interface Presenter {
@@ -18,5 +20,9 @@ interface SearchCoinsContract {
         fun btnSearchClicked(coinName: String)
 
         fun btnDetailsClicked()
+
+        fun hideProgressBar()
+
+        fun displayProgressBar()
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.example.kotlinfirstapp.R
@@ -68,6 +69,11 @@ class SearchCoinsFragment : BaseFragment(), SearchCoinsContract.View {
     override fun onResume() {
         presenter.setSearchCoinsView(this)
         super.onResume()
+    }
+
+    override fun onError() {
+        Toast.makeText(context, "Retrofit error, please try again", Toast.LENGTH_SHORT).show()
+        presenter.hideProgressBar()
     }
 
 

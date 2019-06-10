@@ -9,6 +9,8 @@ import com.example.kotlinfirstapp.data.CoinDao
 import com.example.kotlinfirstapp.router.Router
 import com.example.kotlinfirstapp.ui.coinDetails.CoinDetailsContract
 import com.example.kotlinfirstapp.ui.coinDetails.CoinDetailsPresenter
+import com.example.kotlinfirstapp.ui.myCoins.MyCoinsContract
+import com.example.kotlinfirstapp.ui.myCoins.MyCoinsPresenter
 import com.example.kotlinfirstapp.ui.searchCoins.SearchCoinsContract
 import com.example.kotlinfirstapp.ui.searchCoins.SearchCoinsPresenter
 import com.example.kotlinfirstapp.viewPager.ViewPagerContract
@@ -58,5 +60,15 @@ class FragmentModule(private val fragmentManager: FragmentManager) {
     ): CoinDetailsContract.Presenter {
         return CoinDetailsPresenter(retrofit, coinDao, router)
     }
+
+    @Provides
+    fun provideMyCoinsPresenter(
+        retrofit: Retrofit,
+        coinDao: CoinDao,
+        router: Router
+    ): MyCoinsContract.Presenter {
+        return MyCoinsPresenter(retrofit, coinDao, router)
+    }
+
 
 }

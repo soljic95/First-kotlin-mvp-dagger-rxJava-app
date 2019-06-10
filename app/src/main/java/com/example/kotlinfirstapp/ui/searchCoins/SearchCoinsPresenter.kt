@@ -2,6 +2,7 @@ package com.example.kotlinfirstapp.ui.searchCoins
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.example.kotlinfirstapp.base.BasePresenter
 import com.example.kotlinfirstapp.data.CoinDao
 import com.example.kotlinfirstapp.model.Data
@@ -27,15 +28,20 @@ class SearchCoinsPresenter(retrofit: Retrofit, coinDao: CoinDao, router: Router)
         displayProgressBar()
         if (validateName(coinName)) {
             addDisposable(
-                retrofit.create(RestClient::class.java).getDoge(coinName).subscribeOn(Schedulers.io())
+                retrofit.create(RestClient::class.java).getCoin(coinName).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ result ->
-                        Log.d("marko", result.data.price)
-                        this.coin = result.data
-                        view.onCoinReady(result.data.name)
-                        hideProgressBar()
-                    },
-                        { errorMsg -> Log.d("marko", "error indeed ${errorMsg.localizedMessage}") })
+                    .subscribe(
+                        { result ->
+                            Log.d("marko", result.data.price)
+                            this.coin = result.data
+                            view.onCoinReady(result.data.name)
+                            hideProgressBar()
+                        },
+                        { errorMsg ->
+                            Log.d("marko", "error indeed ${errorMsg.localizedMessage}")
+                            view.onError()
+                        }
+                    )
             )
         }
 
@@ -64,11 +70,11 @@ class SearchCoinsPresenter(retrofit: Retrofit, coinDao: CoinDao, router: Router)
         return isNameValid
     }
 
-    private fun displayProgressBar() {
+    override fun displayProgressBar() {
         view.onDisplayProgressBar()
     }
 
-    private fun hideProgressBar() {
+    override fun hideProgressBar() {
         view.onHideProgressBar()
     }
 }
