@@ -1,12 +1,13 @@
 package com.example.kotlinfirstapp.data
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
+import com.example.kotlinfirstapp.converter.Converters
+import com.example.kotlinfirstapp.model.Data
 import com.example.kotlinfirstapp.model.User
 
-@Database(entities = [User::class], version = 1)
+@Database(entities = [User::class], version = 5)
+@TypeConverters(Converters::class)
 abstract class CoinDatabase : RoomDatabase() {
 
     abstract fun coinDao(): CoinDao
@@ -24,6 +25,7 @@ abstract class CoinDatabase : RoomDatabase() {
                     CoinDatabase::class.java,
                     "coin_databse"
                 )
+                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 return instance
@@ -32,21 +34,6 @@ abstract class CoinDatabase : RoomDatabase() {
             }
         }
     }
-
-
-    /*@Synchronized
-    fun getInstance(context: Context): CoinDatabase {
-
-        if (instance == null) {
-            instance = Room.databaseBuilder<CoinDatabase>(
-                context.applicationContext,
-                CoinDatabase::class.java, context.getString(R.string.coinDatabase)
-            )
-                .fallbackToDestructiveMigration()
-                .build()
-        }
-        return instance as CoinDatabase
-    }*/
 
 
 }

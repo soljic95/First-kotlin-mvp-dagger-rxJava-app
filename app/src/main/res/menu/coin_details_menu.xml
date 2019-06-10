@@ -3,7 +3,9 @@
 
     <item
         android:id="@+id/saveCoinMenuItem"
-        android:title="Save coin" />
+        android:checkable="true"
+        android:title="@string/save_coin"
+        />
 
 
 </menu>
