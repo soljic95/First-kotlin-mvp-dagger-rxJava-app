@@ -6,4 +6,7 @@
     <dimen name="usual_padding">16dp</dimen>
     <dimen name="progressbar_width">45dp</dimen>
     <dimen name="progressbar_height">45dp</dimen>
+    <dimen name="coin_item_height">100dp</dimen>
+    <dimen name="radius">50dp</dimen>
+    <dimen name="wide_text_input">200dp</dimen>
 </resources>

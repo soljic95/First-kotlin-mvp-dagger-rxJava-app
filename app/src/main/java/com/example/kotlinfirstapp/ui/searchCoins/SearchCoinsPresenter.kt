@@ -28,7 +28,7 @@ class SearchCoinsPresenter(retrofit: Retrofit, coinDao: CoinDao, router: Router)
         displayProgressBar()
         if (validateName(coinName)) {
             addDisposable(
-                retrofit.create(RestClient::class.java).getCoin(coinName).subscribeOn(Schedulers.io())
+                getClientAdapter().getCoin(coinName).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
                         { result ->
@@ -48,7 +48,7 @@ class SearchCoinsPresenter(retrofit: Retrofit, coinDao: CoinDao, router: Router)
     }
 
     override fun btnDetailsClicked() {
-        var bundle = Bundle()
+        val bundle = Bundle()
         bundle.putParcelable("coin", coin)
         getRouter().goToDetailsPage(bundle)
     }

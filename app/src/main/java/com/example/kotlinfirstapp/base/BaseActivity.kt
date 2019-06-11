@@ -28,5 +28,16 @@ abstract class BaseActivity : AppCompatActivity() {
         return this.activityComponent
     }
 
+    protected abstract fun getPresenter(): BasePresenter
 
+    override fun onPause() {
+        getPresenter().deactivate()
+        super.onPause()
+    }
+
+
+    override fun onResume() {
+        getPresenter().activate()
+        super.onResume()
+    }
 }

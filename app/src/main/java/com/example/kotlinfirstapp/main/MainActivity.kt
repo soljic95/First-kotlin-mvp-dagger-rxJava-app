@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.appcompat.app.ActionBar
 import com.example.kotlinfirstapp.R
 import com.example.kotlinfirstapp.base.BaseActivity
+import com.example.kotlinfirstapp.base.BasePresenter
 import com.example.kotlinfirstapp.dagger.component.ActivityComponent
 import com.example.kotlinfirstapp.dagger.qualifiers.ForActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -35,6 +36,10 @@ class MainActivity : BaseActivity(), MainContract.View {
         }
 
 
+    }
+
+    override fun getPresenter(): BasePresenter {
+        return this.presenter as BasePresenter
     }
 
 

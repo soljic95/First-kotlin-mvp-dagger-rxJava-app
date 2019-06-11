@@ -7,6 +7,7 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import com.example.kotlinfirstapp.R
 import com.example.kotlinfirstapp.base.BaseActivity
+import com.example.kotlinfirstapp.base.BasePresenter
 import com.example.kotlinfirstapp.dagger.component.ActivityComponent
 import kotlinx.android.synthetic.main.activity_register_user.*
 import javax.inject.Inject
@@ -58,5 +59,9 @@ class RegisterUserActivity : BaseActivity(),
     override fun onPasswordError() {
         etRegPassword.error = getString(R.string.password_error)
 
+    }
+
+    override fun getPresenter(): BasePresenter {
+        return presenter as BasePresenter
     }
 }

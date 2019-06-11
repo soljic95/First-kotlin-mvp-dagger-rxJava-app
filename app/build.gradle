@@ -12,7 +12,7 @@ android {
     }
     defaultConfig {
         applicationId "com.example.kotlinfirstapp"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -61,4 +61,7 @@ dependencies {
 
     //recyclerView
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+    //http logging interceptor
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
 }

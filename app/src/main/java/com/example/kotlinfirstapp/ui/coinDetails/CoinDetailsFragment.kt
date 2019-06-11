@@ -6,6 +6,7 @@ import android.view.*
 
 import com.example.kotlinfirstapp.R
 import com.example.kotlinfirstapp.base.BaseFragment
+import com.example.kotlinfirstapp.base.BasePresenter
 import com.example.kotlinfirstapp.dagger.component.FragmentComponent
 import com.example.kotlinfirstapp.main.MainActivity
 import com.example.kotlinfirstapp.model.Data
@@ -60,12 +61,14 @@ class CoinDetailsFragment : BaseFragment(), CoinDetailsContract.View {
 
     }
 
+    override fun getPresenter(): BasePresenter {
+        return presenter as BasePresenter
+    }
+
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             android.R.id.home -> presenter.goBackInFragment()
-            R.id.saveCoinMenuItem -> {
-                presenter.saveCoinClicked(coin!!.name, item.isChecked)
-            }
+            R.id.saveCoinMenuItem -> presenter.saveCoinClicked(coin!!.name, item.isChecked)
         }
         return super.onOptionsItemSelected(item)
     }
@@ -77,16 +80,16 @@ class CoinDetailsFragment : BaseFragment(), CoinDetailsContract.View {
     }
 
     private fun init() {
-        coin = arguments?.getParcelable("coin") //todo string placeholder stavi tu
-        tvName.text = "Coin name: ${coin?.name}"
-        tvAcronym.text = "Coin acronym: ${coin?.acronym}"
+        coin = arguments?.getParcelable(getString(R.string.coin_key))
+        tvName.text = String.format(resources.getString(R.string.coin_name), coin?.name)
+        tvAcronym.text = String.format(resources.getString(R.string.coin_acronym), coin?.acronym)
         tvNetwork.text = coin?.network
         tvSymbol.text = coin?.symbol_htmlcode
         tvUrl.text = coin?.url
         tvMiningDifficulty.text = coin?.mining_difficulty
         tvUnconfirmed.text = coin?.unconfirmed_txs.toString()
         tvBlocks.text = coin?.blocks.toString()
-        tvPrice.text = "Coin price: ${coin?.price} ${coin?.price_base}"
+        tvPrice.text = String.format(resources.getString(R.string.coin_price), coin?.price, coin?.price_base)
         tvPriceUpdateTime.text = coin?.price_update_time.toString()
         tvHashRate.text = coin?.hashrate
 

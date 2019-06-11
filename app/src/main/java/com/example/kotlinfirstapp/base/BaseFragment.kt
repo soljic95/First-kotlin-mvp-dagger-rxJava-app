@@ -22,4 +22,11 @@ abstract class BaseFragment : Fragment() {
     }
 
     abstract fun inject(fragmentComponent: FragmentComponent)
+
+    abstract fun getPresenter(): BasePresenter
+
+    override fun onPause() {
+        getPresenter().deactivate()
+        super.onPause()
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.kotlinfirstapp.ui.myCoins
 
+import android.os.Bundle
 import com.example.kotlinfirstapp.model.Data
 
 interface MyCoinsContract {
@@ -11,12 +12,17 @@ interface MyCoinsContract {
 
         fun onHideProgressBar()
 
+
     }
 
     interface Presenter {
         fun setUpView(view: View)
 
         fun init()
+
+        fun hideProgressBar()
+
+        fun onRecyclerItemClicked(bundle: Bundle)
 
     }
 }

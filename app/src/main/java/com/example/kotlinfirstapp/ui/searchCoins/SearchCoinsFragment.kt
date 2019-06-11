@@ -10,6 +10,7 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import com.example.kotlinfirstapp.R
 import com.example.kotlinfirstapp.base.BaseFragment
+import com.example.kotlinfirstapp.base.BasePresenter
 import com.example.kotlinfirstapp.dagger.component.FragmentComponent
 import kotlinx.android.synthetic.main.fragment_search_coins.*
 import javax.inject.Inject
@@ -62,7 +63,7 @@ class SearchCoinsFragment : BaseFragment(), SearchCoinsContract.View {
     }
 
     override fun onPause() {
-        childFragmentManager.beginTransaction().addToBackStack("search_coins_fragment").commit()
+        childFragmentManager.beginTransaction().addToBackStack(resources.getString(R.string.search_coins_tag)).commit()
         super.onPause()
     }
 
@@ -72,8 +73,12 @@ class SearchCoinsFragment : BaseFragment(), SearchCoinsContract.View {
     }
 
     override fun onError() {
-        Toast.makeText(context, "Retrofit error, please try again", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, resources.getString(R.string.retrofit_error), Toast.LENGTH_SHORT).show()
         presenter.hideProgressBar()
+    }
+
+    override fun getPresenter(): BasePresenter {
+        return presenter as BasePresenter
     }
 
 

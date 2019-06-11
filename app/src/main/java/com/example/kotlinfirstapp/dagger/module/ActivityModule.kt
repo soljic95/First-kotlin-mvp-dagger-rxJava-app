@@ -2,11 +2,13 @@ package com.example.kotlinfirstapp.dagger.module
 
 import android.app.Activity
 import android.content.Context
+import android.view.LayoutInflater
 import androidx.fragment.app.FragmentManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlinfirstapp.dagger.qualifiers.ForActivity
-import com.example.kotlinfirstapp.viewPager.MyViewPagerAdapter
-import com.example.kotlinfirstapp.data.CoinDao
 import com.example.kotlinfirstapp.dagger.scope.ActivityScope
+import com.example.kotlinfirstapp.dagger.scope.FragmentScope
+import com.example.kotlinfirstapp.data.CoinDao
 import com.example.kotlinfirstapp.main.MainContract
 import com.example.kotlinfirstapp.main.MainPresenter
 import com.example.kotlinfirstapp.router.Router
@@ -17,6 +19,7 @@ import com.example.kotlinfirstapp.ui.registerUser.RegisterUserContract
 import com.example.kotlinfirstapp.ui.registerUser.RegisterUserPresenter
 import com.example.kotlinfirstapp.ui.splash.SplashContract
 import com.example.kotlinfirstapp.ui.splash.SplashPresenter
+import com.example.kotlinfirstapp.viewPager.MyViewPagerAdapter
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -34,6 +37,14 @@ class ActivityModule(
     fun provideActivityContext(): Context {
         return context
     }
+
+
+    @Provides
+    @ActivityScope
+    fun provideLayoutInflater(context: Context): LayoutInflater {
+        return LayoutInflater.from(context)
+    }
+
 
 
     @Provides
@@ -55,15 +66,6 @@ class ActivityModule(
         return RouterImpl(context as Activity, fragmentManager)
     }
 
-    @Provides
-    @ActivityScope
-    fun provideRetrofit(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl("https://chain.so/api/v2/get_info/")
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
 
     @Provides
     @ActivityScope
@@ -93,8 +95,10 @@ class ActivityModule(
 
     interface Exposes {
 
-        fun getRetrofit(): Retrofit
-
         fun getRouter(): Router
+
+        fun getLayoutInflater(): LayoutInflater
+
+        fun getContext(): Context
     }
 }

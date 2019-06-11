@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import com.example.kotlinfirstapp.R
 import com.example.kotlinfirstapp.main.MainActivity
-import com.example.kotlinfirstapp.model.User
 import com.example.kotlinfirstapp.ui.coinDetails.CoinDetailsFragment
 import com.example.kotlinfirstapp.ui.loginUser.LoginActivity
 import com.example.kotlinfirstapp.ui.registerUser.RegisterUserActivity
@@ -17,10 +16,12 @@ class RouterImpl(
     private val fragmentManager: FragmentManager
 ) : Router {
 
+    private val VIEW_PAGER_FRAGMENT = "view_pager_fragment"
+
 
     override fun displayViewPagerFragment() {
         fragmentManager.beginTransaction()
-            .replace(R.id.frag_container, ViewPagerFragment(), "view_pager_fragment")
+            .replace(R.id.frag_container, ViewPagerFragment(), VIEW_PAGER_FRAGMENT)
             .commit()
     }
 
@@ -47,7 +48,7 @@ class RouterImpl(
     override fun goToDetailsPage(bundle: Bundle) {
         var detailsFragment = CoinDetailsFragment()
         detailsFragment.arguments = bundle
-        fragmentManager.beginTransaction().addToBackStack("view_pager_fragment")
+        fragmentManager.beginTransaction().addToBackStack(VIEW_PAGER_FRAGMENT)
             .replace(R.id.frag_container, detailsFragment).commit()
     }
 

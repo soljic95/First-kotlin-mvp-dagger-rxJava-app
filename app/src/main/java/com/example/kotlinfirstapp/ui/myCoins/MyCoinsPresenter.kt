@@ -1,11 +1,11 @@
 package com.example.kotlinfirstapp.ui.myCoins
 
+import android.os.Bundle
 import android.util.Log
 import com.example.kotlinfirstapp.base.BasePresenter
 import com.example.kotlinfirstapp.data.CoinDao
 import com.example.kotlinfirstapp.model.Data
 import com.example.kotlinfirstapp.model.User
-import com.example.kotlinfirstapp.restApi.RestClient
 import com.example.kotlinfirstapp.router.Router
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -31,26 +31,46 @@ class MyCoinsPresenter(retrofit: Retrofit, coinDao: CoinDao, router: Router) :
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ user ->
                     this.user = user
-                    getCoinList()
+                    if (user.userCoins.size > 1) {
+                        getCoinList()
+                    } else view.onHideProgressBar()
                 },
                     { errorMsg -> Log.d("marko", "error happend ${errorMsg.localizedMessage}") })
         )
     }
 
 
-    private fun getCoinList() {
-        listOfCoins = ArrayList()
-        for (coinName in user.userCoins) {
-            retrofit.create(RestClient::class.java).getCoinList(coinName)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ response ->
-                    if (!listOfCoins.contains(response.data)) listOfCoins.add(response.data)
-                }, { it ->
-                    Log.d("marko", it.localizedMessage)
-                })
-        }
+    override fun hideProgressBar() {
+        view.onHideProgressBar()
+    }
 
+    private fun getCoinList() {
+        var i = 0
+        for (coinName in user.userCoins) {
+            i++
+            if (coinName != "") {
+                addDisposable(
+                    getClientAdapter().getCoin(coinName)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({ response ->
+                            if (!listOfCoins.contains(response.data) && response.data.name != "Unlisted") {
+                                listOfCoins.add(response.data)
+                            }
+                            if (i == user.userCoins.size) view.onCoinsReady(listOfCoins)
+                        }, {
+                            Log.d("marko", it.localizedMessage)
+                            view.onHideProgressBar()
+                        })
+                )
+
+            }
+
+        }
+    }
+
+    override fun onRecyclerItemClicked(bundle: Bundle) {
+        getRouter().goToDetailsPage(bundle)
     }
 
 

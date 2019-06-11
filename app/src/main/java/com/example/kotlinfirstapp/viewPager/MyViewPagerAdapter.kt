@@ -3,9 +3,8 @@ package com.example.kotlinfirstapp.viewPager
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.fragment.app.FragmentStatePagerAdapter
 
-class MyViewPagerAdapter(manager: FragmentManager) : FragmentStatePagerAdapter(manager) {
+class MyViewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
     private val fragmentList: MutableList<Fragment> = ArrayList()
     private val fragmentTitle: MutableList<String> = ArrayList()
 

@@ -15,15 +15,21 @@
     <string name="username_error">Username cant be less then 3 characters</string>
     <string name="password_error">Password cant be less then 7 characters</string>
     <string name="user_duplicate_toast">There already exists a users with that username</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="log_out">Log out</string>
     <string name="delete_account">Delete account</string>
-    <string name="coin_name">Coin name</string>
+    <string name="coin_name">Coin name: %s</string>
+    <string name="coin_acronym">Coin acronym: %s</string>
     <string name="search">Search</string>
     <string name="coin">Coin :</string>
     <string name="details">Details</string>
     <string name="loading">Loading</string>
     <string name="save_coin">Save coin</string>
+    <string name="coin_price">Coin price: %s %s </string>
+    <string name="coin_key">coin</string>
+    <string name="search_coins_tag">search_coins_fragment</string>
+    <string name="retrofit_error">Retrofit error, please try again</string>
+    <string name="singleCoin">Coin name</string>
+    <string name="coins">coin</string>
+    <string name="coin_search">CoinSearch</string>
 </resources>
