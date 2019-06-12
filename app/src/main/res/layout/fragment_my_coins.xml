@@ -13,6 +13,7 @@
         android:layout_gravity="center"
         android:visibility="invisible" />
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewContainer"
         android:layout_width="match_parent"

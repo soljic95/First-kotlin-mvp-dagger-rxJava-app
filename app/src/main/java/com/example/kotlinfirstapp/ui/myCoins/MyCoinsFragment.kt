@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.example.kotlinfirstapp.R
@@ -16,10 +17,10 @@ import com.example.kotlinfirstapp.dagger.component.FragmentComponent
 import com.example.kotlinfirstapp.model.Data
 import kotlinx.android.synthetic.main.fragment_my_coins.*
 import javax.inject.Inject
-import javax.inject.Provider
 
 
-class MyCoinsFragment : BaseFragment(), MyCoinsContract.View, RecyclerViewOnClickListener {
+class MyCoinsFragment : BaseFragment(), MyCoinsContract.View, RecyclerViewOnClickListener,
+    SwipeRefreshLayout.OnRefreshListener {
 
 
     @Inject
@@ -34,6 +35,7 @@ class MyCoinsFragment : BaseFragment(), MyCoinsContract.View, RecyclerViewOnClic
 
     @BindView(R.id.recyclerViewContainer)
     lateinit var recyclerView: RecyclerView
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -89,11 +91,14 @@ class MyCoinsFragment : BaseFragment(), MyCoinsContract.View, RecyclerViewOnClic
         presenter.onRecyclerItemClicked(bundle)
     }
 
+    override fun onRefresh() {
+        presenter.init()
+    }
+
     override fun onPause() {
         coinsRecyclerAdapter.clear()
         super.onPause()
     }
-
 
     override fun onResume() {
         presenter.init()
