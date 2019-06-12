@@ -47,7 +47,7 @@ class CoinsRecyclerAdapter(inflater: LayoutInflater) : RecyclerView.Adapter<Coin
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        var coin = coinList[position]
+        val coin = coinList[position]
         holder.tvCoinName.text = coin.name
         holder.tvCoinPrice.text = coin.price
         holder.coin = coin
@@ -74,7 +74,7 @@ class CoinsRecyclerAdapter(inflater: LayoutInflater) : RecyclerView.Adapter<Coin
 
         @OnClick(R.id.coinItemLayout)
         fun sendData() {
-            var bundle = Bundle()
+            val bundle = Bundle()
             bundle.putParcelable("coin", coin)
             listener.onItemClickedListener(bundle)
 

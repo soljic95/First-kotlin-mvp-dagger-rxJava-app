@@ -48,7 +48,6 @@ class MyCoinsFragment : BaseFragment(), MyCoinsContract.View, RecyclerViewOnClic
         ButterKnife.bind(this, view)
         presenter.setUpView(this)
         setRecyclerView()
-        presenter.init()
 
     }
 
@@ -58,7 +57,6 @@ class MyCoinsFragment : BaseFragment(), MyCoinsContract.View, RecyclerViewOnClic
 
 
     override fun onCoinsReady(listOfCoins: ArrayList<Data>) {
-        coinsRecyclerAdapter.clear()
         for (coin in listOfCoins) {
             coinsRecyclerAdapter.addCoin(coin)
             coinsRecyclerAdapter.notifyDataSetChanged()
@@ -85,11 +83,21 @@ class MyCoinsFragment : BaseFragment(), MyCoinsContract.View, RecyclerViewOnClic
         recyclerView.layoutManager = LinearLayoutManager(context)
         coinsRecyclerAdapter.setOnClickListener(this)
         recyclerView.adapter = coinsRecyclerAdapter
-
     }
 
     override fun onItemClickedListener(bundle: Bundle) {
         presenter.onRecyclerItemClicked(bundle)
+    }
+
+    override fun onPause() {
+        coinsRecyclerAdapter.clear()
+        super.onPause()
+    }
+
+
+    override fun onResume() {
+        presenter.init()
+        super.onResume()
     }
 
 

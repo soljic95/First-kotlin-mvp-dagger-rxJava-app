@@ -25,6 +25,7 @@ class MyCoinsPresenter(retrofit: Retrofit, coinDao: CoinDao, router: Router) :
     }
 
     override fun init() {
+        listOfCoins.clear()
         view.onDisplayProgressBar()
         addDisposable(
             getCoinDao().getLoggedUser().subscribeOn(Schedulers.io())
