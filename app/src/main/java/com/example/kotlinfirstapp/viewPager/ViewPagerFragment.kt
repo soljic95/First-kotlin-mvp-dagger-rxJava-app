@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.FragmentManager
 import com.example.kotlinfirstapp.R
 import com.example.kotlinfirstapp.base.BaseFragment
 import com.example.kotlinfirstapp.base.BasePresenter
@@ -16,12 +17,19 @@ import javax.inject.Inject
 
 
 class ViewPagerFragment : BaseFragment(), ViewPagerContract.View {
+    companion object {
+        @JvmStatic
+        fun newInstance(): ViewPagerFragment {
+            return ViewPagerFragment()
+        }
+    }
 
     @Inject
     lateinit var presenter: ViewPagerContract.Presenter
 
     private var savedInstance: Bundle? = null
     private var progressDialog: AlertDialog? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

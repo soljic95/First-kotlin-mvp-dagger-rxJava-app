@@ -14,6 +14,14 @@ import kotlinx.android.synthetic.main.fragment_coin_details.*
 import javax.inject.Inject
 
 class CoinDetailsFragment : BaseFragment(), CoinDetailsContract.View {
+    companion object {
+        @JvmStatic
+        fun newInstance(bundle: Bundle): CoinDetailsFragment {
+            var coinDetailsFragment = CoinDetailsFragment()
+            coinDetailsFragment.arguments = bundle
+            return coinDetailsFragment
+        }
+    }
 
 
     @Inject

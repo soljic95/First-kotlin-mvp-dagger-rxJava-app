@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.example.kotlinfirstapp.R
 import com.example.kotlinfirstapp.main.MainActivity
 import com.example.kotlinfirstapp.ui.coinDetails.CoinDetailsFragment
@@ -16,13 +17,27 @@ class RouterImpl(
     private val fragmentManager: FragmentManager
 ) : Router {
 
-    private val VIEW_PAGER_FRAGMENT = "view_pager_fragment"
+
+    private inline fun FragmentManager.doTransaction(func: FragmentTransaction.() -> FragmentTransaction) {
+        beginTransaction().func().commit()
+    }
+
+    private inline fun FragmentManager.doTransactionAndAddToBackStack(func: FragmentTransaction.() -> FragmentTransaction) {
+        beginTransaction().func().addToBackStack(null).commit()
+    }
 
 
     override fun displayViewPagerFragment() {
-        fragmentManager.beginTransaction()
-            .replace(R.id.frag_container, ViewPagerFragment(), VIEW_PAGER_FRAGMENT)
-            .commit()
+        fragmentManager.doTransaction { replace(R.id.frag_container, ViewPagerFragment.newInstance()) }
+    }
+
+    override fun goToDetailsPage(bundle: Bundle) {
+        fragmentManager.doTransactionAndAddToBackStack {
+            replace(
+                R.id.frag_container,
+                CoinDetailsFragment.newInstance(bundle)
+            )
+        }
     }
 
     override fun goBackInFragment() {
@@ -45,12 +60,6 @@ class RouterImpl(
         activity.finish()
     }
 
-    override fun goToDetailsPage(bundle: Bundle) {
-        var detailsFragment = CoinDetailsFragment()
-        detailsFragment.arguments = bundle
-        fragmentManager.beginTransaction().addToBackStack(VIEW_PAGER_FRAGMENT)
-            .replace(R.id.frag_container, detailsFragment).commit()
-    }
 
     override fun goToLoginPage() {
         activity.startActivity(Intent(activity, LoginActivity::class.java))

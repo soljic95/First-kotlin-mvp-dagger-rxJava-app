@@ -71,17 +71,14 @@ class RegisterUserPresenter(retrofit: Retrofit, coinDao: CoinDao, router: Router
         return isDataValid
     }
 
-    private fun reportUsernameError() {
-        regView.onUserNameError()
-    }
+    private fun reportUsernameError() = regView.onUserNameError()
 
-    private fun reportPasswordError() {
-        regView.onPasswordError()
-    }
 
-    override fun displayErrorWhileInserting() {
-        regView.onErrorWhileInserting()
-    }
+    private fun reportPasswordError() = regView.onPasswordError()
+
+
+    override fun displayErrorWhileInserting() = regView.onErrorWhileInserting()
+
 
     private fun logUser() {
         user.isUserLoggedIn = true
@@ -96,4 +93,6 @@ class RegisterUserPresenter(retrofit: Retrofit, coinDao: CoinDao, router: Router
                     { errorMsg -> Log.d("marko", "error happend ${errorMsg.localizedMessage}") })
         )
     }
+
+
 }

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -29,9 +30,6 @@ class MyCoinsFragment : BaseFragment(), MyCoinsContract.View, RecyclerViewOnClic
     @Inject
     lateinit var coinsRecyclerAdapter: CoinsRecyclerAdapter
 
-    /*@Inject
-    lateinit var manager: Provider<LinearLayoutManager>*/
-
 
     @BindView(R.id.recyclerViewContainer)
     lateinit var recyclerView: RecyclerView
@@ -51,12 +49,13 @@ class MyCoinsFragment : BaseFragment(), MyCoinsContract.View, RecyclerViewOnClic
         presenter.setUpView(this)
         setRecyclerView()
 
+
     }
+
 
     override fun inject(fragmentComponent: FragmentComponent) {
         fragmentComponent.inject(this)
     }
-
 
     override fun onCoinsReady(listOfCoins: ArrayList<Data>) {
         for (coin in listOfCoins) {
