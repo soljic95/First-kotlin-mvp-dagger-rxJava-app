@@ -15,4 +15,7 @@ interface CoinDao {
 
     @Update
     fun logUser(user: User)
+
+    @Query("SELECT * FROM user_table WHERE isUserLoggedIn = 1")
+    fun getLoggedUser(): Single<User>
 }

@@ -17,5 +17,13 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="TabLayoutTextTheme" parent="Widget.MaterialComponents.TabLayout">
+        <item name="android:textColor">@color/darkText</item>
+    </style>
+
+    <!--Style for Splash Screen-->
+    <style name="SplashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen_background</item>
+    </style>
 
 </resources>

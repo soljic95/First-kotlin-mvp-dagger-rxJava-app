@@ -1,10 +1,11 @@
-package com.example.kotlinfirstapp.di.component
+package com.example.kotlinfirstapp.dagger.component
 
-import com.example.kotlinfirstapp.di.module.ActivityModule
-import com.example.kotlinfirstapp.di.scope.ActivityScope
+import com.example.kotlinfirstapp.dagger.module.ActivityModule
+import com.example.kotlinfirstapp.dagger.scope.ActivityScope
 import com.example.kotlinfirstapp.main.MainActivity
 import com.example.kotlinfirstapp.ui.loginUser.LoginActivity
 import com.example.kotlinfirstapp.ui.registerUser.RegisterUserActivity
+import com.example.kotlinfirstapp.ui.splash.SplashActivity
 import dagger.Component
 
 @ActivityScope
@@ -12,9 +13,13 @@ import dagger.Component
     modules = [ActivityModule::class],
     dependencies = [ApplicationComponent::class]
 )
-interface ActivityComponent : ActivitiyCompnentExposes {
+interface ActivityComponent : ActivityCompnentExposes {
 
     fun inject(mainActivity: MainActivity)
+
     fun inject(loginActivity: LoginActivity)
+
     fun inject(registerUserActivity: RegisterUserActivity)
+
+    fun inject(splashActivity: SplashActivity)
 }

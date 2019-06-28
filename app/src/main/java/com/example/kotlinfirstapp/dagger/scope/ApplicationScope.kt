@@ -1,4 +1,4 @@
-package com.example.kotlinfirstapp.di.scope
+package com.example.kotlinfirstapp.dagger.scope
 
 import javax.inject.Scope
 

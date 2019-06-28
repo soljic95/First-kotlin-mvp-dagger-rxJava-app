@@ -5,6 +5,7 @@ import com.example.kotlinfirstapp.base.BasePresenter
 import com.example.kotlinfirstapp.data.CoinDao
 import com.example.kotlinfirstapp.model.User
 import com.example.kotlinfirstapp.router.Router
+import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -45,24 +46,34 @@ class LoginPresenter(retrofit: Retrofit, coinDao: CoinDao, router: Router) : Bas
         getRouter().goToRegisterPage()
     }
 
-    fun validateUserCredentials(user: User, password: String) {
+    private fun validateUserCredentials(user: User, password: String) {
         if (user.password == password) {
-            getRouter().goToMainPage()
+            user.isUserLoggedIn = true
+            addDisposable(
+                Completable.fromAction { getCoinDao().logUser(user) }
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        Log.d("marko", "userLogged as logged in")
+                        getRouter().goToMainPage()
+                    },
+                        { errorMsg -> Log.d("marko", "error ${errorMsg.localizedMessage}") })
+            )
         } else {
             loginView?.onWrongPassword()
             hideProgressBar()
         }
     }
 
-    fun showProgressBar() {
+    private fun showProgressBar() {
         loginView?.onDisplayProgressBar()
     }
 
-    fun hideProgressBar() {
+    private fun hideProgressBar() {
         loginView?.onHideProgressBar()
     }
 
-    fun noSuchUserInDb() {
+    private fun noSuchUserInDb() {
         loginView?.onNoUserInDb()
     }
 

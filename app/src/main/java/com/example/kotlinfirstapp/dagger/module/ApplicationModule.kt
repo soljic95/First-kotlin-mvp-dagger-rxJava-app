@@ -1,9 +1,10 @@
-package com.example.kotlinfirstapp.di.module
+package com.example.kotlinfirstapp.dagger.module
 
 import android.content.Context
+import com.example.kotlinfirstapp.dagger.qualifiers.ForApplication
 import com.example.kotlinfirstapp.data.CoinDao
 import com.example.kotlinfirstapp.data.CoinDatabase
-import com.example.kotlinfirstapp.di.scope.ApplicationScope
+import com.example.kotlinfirstapp.dagger.scope.ApplicationScope
 import dagger.Module
 import dagger.Provides
 
@@ -13,13 +14,14 @@ class ApplicationModule(val context: Context) {
 
     @Provides
     @ApplicationScope
+    @ForApplication
     fun provideContext(): Context {
-        return this.context
+        return context
     }
 
     @Provides
     @ApplicationScope
-    fun provideCoinDatabase(context: Context): CoinDatabase {
+    fun provideCoinDatabase(@ForApplication context: Context): CoinDatabase {
         return CoinDatabase.getDatabase(context)
     }
 
@@ -32,6 +34,8 @@ class ApplicationModule(val context: Context) {
     interface Exposes {
         fun getCoinDatabase(): CoinDatabase
         fun getCoinDao(): CoinDao
+
+
     }
 
 }
