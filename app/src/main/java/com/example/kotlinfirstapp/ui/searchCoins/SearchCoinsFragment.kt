@@ -31,8 +31,6 @@ class SearchCoinsFragment : BaseFragment(), SearchCoinsContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ButterKnife.bind(this, view)
-
-
     }
 
     override fun inject(fragmentComponent: FragmentComponent) {
@@ -55,13 +53,16 @@ class SearchCoinsFragment : BaseFragment(), SearchCoinsContract.View {
 
     override fun onHideProgressBar() {
         searchProgressBar.visibility = View.INVISIBLE
-
-
     }
 
     override fun onCoinReady(coinName: String) {
         tvCoinName.text = coinName
         btnDetails.visibility = View.VISIBLE
+    }
+
+    override fun onPause() {
+        childFragmentManager.beginTransaction().addToBackStack("search_coins_fragment").commit()
+        super.onPause()
     }
 
     override fun onResume() {

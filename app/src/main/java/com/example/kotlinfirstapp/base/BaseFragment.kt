@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.kotlinfirstapp.dagger.component.DaggerFragmentComponent
 import com.example.kotlinfirstapp.dagger.component.FragmentComponent
+import com.example.kotlinfirstapp.dagger.module.FragmentModule
 
 abstract class BaseFragment : Fragment() {
 
@@ -13,6 +14,7 @@ abstract class BaseFragment : Fragment() {
         super.onCreate(savedInstanceState)
         fragmentComponent = DaggerFragmentComponent.builder()
             .activityComponent((activity as BaseActivity).getComponent())
+            .fragmentModule(FragmentModule(childFragmentManager))
             .build()
 
         inject(fragmentComponent)

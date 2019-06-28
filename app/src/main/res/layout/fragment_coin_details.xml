@@ -1,14 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/usual_padding"
     tools:context=".ui.coinDetails.CoinDetailsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/eight_margin" />
+
+    <TextView
+        android:id="@+id/tvAcronym"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/eight_margin" />
+
+    <TextView
+        android:id="@+id/tvNetwork"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/eight_margin" />
+
+    <TextView
+        android:id="@+id/tvSymbol"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/eight_margin" />
+
+    <TextView
+        android:id="@+id/tvUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/eight_margin" />
+
+    <TextView
+        android:id="@+id/tvMiningDifficulty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/eight_margin" />
+
+    <TextView
+        android:id="@+id/tvUnconfirmed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/eight_margin" />
+
+    <TextView
+        android:id="@+id/tvBlocks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/eight_margin" />
+
+    <TextView
+        android:id="@+id/tvPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/eight_margin" />
+
+
+    <TextView
+        android:id="@+id/tvPriceUpdateTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/eight_margin" />
+
+    <TextView
+        android:id="@+id/tvHashRate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/eight_margin" />
+</LinearLayout>

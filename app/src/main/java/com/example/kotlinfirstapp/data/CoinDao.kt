@@ -18,4 +18,6 @@ interface CoinDao {
 
     @Query("SELECT * FROM user_table WHERE isUserLoggedIn = 1")
     fun getLoggedUser(): Single<User>
+
+
 }

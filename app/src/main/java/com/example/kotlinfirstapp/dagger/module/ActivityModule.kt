@@ -3,6 +3,7 @@ package com.example.kotlinfirstapp.dagger.module
 import android.app.Activity
 import android.content.Context
 import androidx.fragment.app.FragmentManager
+import com.example.kotlinfirstapp.dagger.qualifiers.ForActivity
 import com.example.kotlinfirstapp.viewPager.MyViewPagerAdapter
 import com.example.kotlinfirstapp.data.CoinDao
 import com.example.kotlinfirstapp.dagger.scope.ActivityScope
@@ -29,12 +30,14 @@ class ActivityModule(
 ) {
 
     @Provides
+    @ActivityScope
     fun provideActivityContext(): Context {
         return context
     }
 
 
     @Provides
+    @ForActivity
     @ActivityScope
     fun provideFragmentManger(): FragmentManager {
         return fragmentManager
@@ -42,13 +45,13 @@ class ActivityModule(
 
     @Provides
     @ActivityScope
-    fun provideViewPagerAdapter(fragmentManager: FragmentManager): MyViewPagerAdapter {
+    fun provideViewPagerAdapter(@ForActivity fragmentManager: FragmentManager): MyViewPagerAdapter {
         return MyViewPagerAdapter(fragmentManager)
     }
 
     @Provides
     @ActivityScope
-    fun provideRouter(context: Context, fragmentManager: FragmentManager): Router {
+    fun provideRouter(context: Context, @ForActivity fragmentManager: FragmentManager): Router {
         return RouterImpl(context as Activity, fragmentManager)
     }
 
@@ -89,20 +92,8 @@ class ActivityModule(
     }
 
     interface Exposes {
-        fun getRegisterUserPresenter(): RegisterUserContract.Presenter
 
         fun getRetrofit(): Retrofit
-
-
-        fun retriveContext(): Context
-
-        fun getMainPresenter(): MainContract.Presenter
-
-        fun getLoginPresenter(): LoginContract.Presenter
-
-        fun getSplashPresenter(): SplashContract.Presenter
-
-        fun getViewPagerAdapter(): MyViewPagerAdapter
 
         fun getRouter(): Router
     }
